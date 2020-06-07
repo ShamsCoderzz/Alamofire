@@ -10,13 +10,13 @@ import UIKit
 
 
 extension SecondViewController : ResponseDelegate {
-    func SUCCESS(response: String) {
-      print(response)
-    }
-    
-    func FAILURE(error: String) {
-       print(error)
-    }
+     func SUCCESS(response: Any) {
+           print(response)
+       }
+       
+       func FAILURE(error: Any) {
+           print(error)
+       }
 }
 
 class SecondViewController: UIViewController {

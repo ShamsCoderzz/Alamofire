@@ -1,5 +1,5 @@
 //
-//  LoginResponse.swift
+//  Shop.swift
 //  AlamofireTask
 //
 //  Created by Muhammad Shams on 07/06/2020.
@@ -7,12 +7,11 @@
 //
 
 import Foundation
-
-struct LoginResponse : Codable {
+struct Shop : Codable {
     
-    let message : String
-    let response : String
-    let status : Int
-
+    let _id : String
+    let city : String
+    let name : String
+    
     
 }

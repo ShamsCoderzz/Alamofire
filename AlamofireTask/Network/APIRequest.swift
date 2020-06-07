@@ -11,8 +11,8 @@ import Alamofire
 import UIKit
 
 protocol ResponseDelegate {
-    func SUCCESS(response : String)
-    func FAILURE(error: String)
+    func SUCCESS(response : Any)
+    func FAILURE(error: Any)
 }
 
 struct APIRequest {
@@ -36,8 +36,14 @@ struct APIRequest {
             switch response.result {
 
             case .success:
-                guard let json = response.value else { return }
-//                self.delegate?.SUCCESS(response: json as! String)
+                guard let json = response.data else { return }
+                                
+             //  let dataString = String(data: response.data!, encoding: .utf8)
+            
+                let login : LoginResponse = try! JSONDecoder().decode(LoginResponse.self, from: json)
+                      
+                self.delegate?.SUCCESS(response: login)
+                
                 break
             case .failure(let error):
                 self.delegate?.FAILURE(error: error.localizedDescription)
@@ -52,13 +58,13 @@ struct APIRequest {
           let allShopURL = URL(string: "\(baseUrl)/label")!
 
           AF.request(allShopURL, method: .get).responseJSON { (response) in
-              print(response.result)
-
               switch response.result {
-
               case .success:
-                  guard let json = response.value else { return }
-                     // self.delegate?.SUCCESS(response: json as! String)
+                  guard let json = response.data else { return }
+                  
+                  let allLabel : AllShopResponse = try! JSONDecoder().decode(AllShopResponse.self, from: json)
+                                      
+                self.delegate?.SUCCESS(response: allLabel)
                   break
               case .failure(let error):
                   self.delegate?.FAILURE(error: error.localizedDescription)

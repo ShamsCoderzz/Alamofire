@@ -19,6 +19,7 @@
 		873915EE248D017D0037D8B7 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873915ED248D017D0037D8B7 /* LoginResponse.swift */; };
 		873915F1248D02C30037D8B7 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873915F0248D02C30037D8B7 /* SecondViewController.swift */; };
 		873915F3248D04980037D8B7 /* AllShopResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873915F2248D04980037D8B7 /* AllShopResponse.swift */; };
+		87FD4CE0248D45170026EAA7 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FD4CDF248D45170026EAA7 /* Shop.swift */; };
 		F8535E4B1948B8895018E9DF /* Pods_AlamofireTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B739EDF9F529ABC856D709 /* Pods_AlamofireTask.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		873915ED248D017D0037D8B7 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		873915F0248D02C30037D8B7 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		873915F2248D04980037D8B7 /* AllShopResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllShopResponse.swift; sourceTree = "<group>"; };
+		87FD4CDF248D45170026EAA7 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		BA1B4F5A78BAC13D2F26BEB0 /* Pods-AlamofireTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlamofireTask.debug.xcconfig"; path = "Target Support Files/Pods-AlamofireTask/Pods-AlamofireTask.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +168,7 @@
 			children = (
 				873915ED248D017D0037D8B7 /* LoginResponse.swift */,
 				873915F2248D04980037D8B7 /* AllShopResponse.swift */,
+				87FD4CDF248D45170026EAA7 /* Shop.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				873915EB248CEF460037D8B7 /* APIRequest.swift in Sources */,
 				873915BC248CEDDE0037D8B7 /* SceneDelegate.swift in Sources */,
 				873915EE248D017D0037D8B7 /* LoginResponse.swift in Sources */,
+				87FD4CE0248D45170026EAA7 /* Shop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

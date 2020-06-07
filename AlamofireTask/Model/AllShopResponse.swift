@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct AllShopResponse : Codable {
+    let message : String
+    let response : [Shop]   
+}

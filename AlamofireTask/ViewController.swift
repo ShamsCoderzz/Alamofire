@@ -40,14 +40,17 @@ class ViewController: UIViewController {
 
 
 extension ViewController : ResponseDelegate {
-    func SUCCESS(response: String) {
-      print(response)
+    func SUCCESS(response: Any) {
+        print(response)
+        
+        // yhn check kese krun status bcoz model tw whn parse ho rha ha 
+        
+        
     }
     
-    func FAILURE(error: String) {
-       print(error)
+    func FAILURE(error: Any) {
+        print(error)
     }
-    
     
 }
 
