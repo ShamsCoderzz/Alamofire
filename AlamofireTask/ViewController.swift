@@ -7,16 +7,38 @@
 //
 
 import UIKit
+import Alamofire
+
+extension ViewController : ApiResponseDelegate {
+    func onApiResponse(response: AFDataResponse<Any>, flag: String) {
+        let JSON =  response.value as! NSDictionary
+        
+        print(JSON)
+        print(response.value!)
+
+    }
+    
+    
+    func onFailure(error: String) {
+        print(error)
+    }
+}
 
 class ViewController: UIViewController {
     
-    var apiManager = APIRequest()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        apiManager.delegate = self
+        APIRequest.delegate = self
         loginAPI()
+        
+        
+     
+        
     }
+    
+    
+ 
     
     @IBAction func btnClickListner(_ sender: Any) {
         
@@ -26,31 +48,20 @@ class ViewController: UIViewController {
     
     func HomeVC(){
         let nextVC = self.storyboard?.instantiateViewController(identifier: "secondView") as! SecondViewController
+   //     nextVC.modalPresentationStyle = .currentContext  // custome transaction
+        // present(nextVC,animated: true , completion : nil) // remove toolbar 
         self.navigationController?.pushViewController(nextVC, animated: true)
                
     }
     
     
     func loginAPI(){
-        apiManager.LoginAPI(username: "shams", password: "password")
+        
+        let parameters  : [String: Any] = ["username" : "umer","password" : "password"]
+        APIRequest.callAPI(url: Constants.baseUrl + Constants.login, header: Constants.header, params: parameters, flagType: Constants.login)
     }
-
-
 }
 
 
-extension ViewController : ResponseDelegate {
-    func SUCCESS(response: Any) {
-        print(response)
-        
-        // yhn check kese krun status bcoz model tw whn parse ho rha ha 
-        
-        
-    }
-    
-    func FAILURE(error: Any) {
-        print(error)
-    }
-    
-}
+
 

@@ -7,12 +7,20 @@
 //
 
 import Foundation
+import Alamofire
 
 struct LoginResponse : Codable {
     
     let message : String
     let response : String
     let status : Int
+    
+    
+    static func setLoginData(response : AFDataResponse<Any>){   
+
+        
+        
+    }
 
     
 }

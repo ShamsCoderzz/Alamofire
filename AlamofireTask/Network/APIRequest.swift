@@ -10,67 +10,38 @@ import Foundation
 import Alamofire
 import UIKit
 
-protocol ResponseDelegate {
-    func SUCCESS(response : Any)
-    func FAILURE(error: Any)
-}
 
-struct APIRequest {
+class APIRequest  {
     
-    let baseUrl = "http://ec2-18-206-250-232.compute-1.amazonaws.com:3000"
-    var delegate : ResponseDelegate?
+    static weak var delegate : ApiResponseDelegate?
     
-
-
-    func LoginAPI(username : String, password : String) {
+    class func callAPI(url : String , header : HTTPHeaders , params : Parameters?, flagType : String) {
         
-        let loginURL = URL(string: "\(baseUrl)/user/login")!
-        
-        let params = [
-            "username": username,
-            "password": password
-        ]
-        
-        
-        AF.request(loginURL, method: .post, parameters: params).responseJSON { (response) in
-            switch response.result {
-
-            case .success:
-                guard let json = response.data else { return }
-                                
-             //  let dataString = String(data: response.data!, encoding: .utf8)
-            
-                let login : LoginResponse = try! JSONDecoder().decode(LoginResponse.self, from: json)
-                      
-                self.delegate?.SUCCESS(response: login)
-                
-                break
-            case .failure(let error):
-                self.delegate?.FAILURE(error: error.localizedDescription)
-                break
-            }
-        }
-    }
-    
-    
-    func listOfShops() {
+    if  Connectivity.isConnectedToInternet {
           
-          let allShopURL = URL(string: "\(baseUrl)/label")!
+        let action : HTTPMethod
+        if params != nil { action = .post } else  { action = .get }
+      
+        AF.request(url, method: action , parameters: params, headers: header).responseJSON { (response) in
+                   switch response.result {
+                   case .success:
+                    delegate?.onApiResponse(response: response, flag: flagType)
+                       break
+                   case .failure(let error):
+                    delegate?.onFailure(error : error.localizedDescription)
+                       break
+                   }  }
+        } else { delegate?.onFailure(error : "Check your internet connection")  }
+    }
 
-          AF.request(allShopURL, method: .get).responseJSON { (response) in
-              switch response.result {
-              case .success:
-                  guard let json = response.data else { return }
-                  
-                  let allLabel : AllShopResponse = try! JSONDecoder().decode(AllShopResponse.self, from: json)
-                                      
-                self.delegate?.SUCCESS(response: allLabel)
-                  break
-              case .failure(let error):
-                  self.delegate?.FAILURE(error: error.localizedDescription)
-                  break
-              }
-          }
-      }
-    
+   
 }
+
+class Connectivity {
+        class var isConnectedToInternet : Bool {
+            return NetworkReachabilityManager()?.isReachable ?? false
+        }
+}
+
+
+
